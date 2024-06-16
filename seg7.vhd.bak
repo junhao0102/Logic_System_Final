@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.numeric_bit.all;
+entity seg7 is
+	port(BCDIN: in unsigned(3 downto 0);
+		SEGOUT: out unsigned(7 downto 0));
+end seg7;
+architecture Behave of seg7 is
+type sevsegarray is array (0 to 15) of unsigned(7 downto 0);
+constant seg7Rom: sevsegarray :=
+  ("11000000", "11111001", "10100100", "10110000", 
+   "10011001", "10010010", "10000011", "11111000",
+   "10000000", "10011000", "10001000", "10000011",
+   "11000110", "10100001", "10000110", "00001110" ); 
+begin
+	SEGOUT <= seg7Rom(to_integer(BCDIN));
+end Behave;
